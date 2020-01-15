@@ -1,10 +1,22 @@
-Small CLI tool for generating the C# model classes.
+Small .NET Core Global Tool for generating the C# model classes from SQL tables.
 
+Following parameters are required in order to run the generator successfully:
 
-## Prepare SQL Server Sample Database
+- `--dbms` Specifies the DBMS type, e.g. SqlServer, Postgres (Currently only SqlServer is supported)
+- `--conn-string` Specifies the target database connection string
+- `--output-dir` Path to the directory where the classes will be generated
+- `--namespace` Namespace under which the classes will be generated
 
-` sqlcmd -S SERVER_NAME -U ADMIN_USERNAME -P 'ADMIN_PASSWORD' -i ./DBScripts/sql-server-sample.sql`
+Tool can be started from the project or published and installed as the .NET Core Global Tool.
 
-Run generate command:
+If the Global Tool is installed then the generator can be invoked by `sql2sharp` command together with required arguments.
 
-`dotnet run --dbms "SqlServer" --conn-string "Server=localhost;Database=DModelSample;User Id=db_model_generator_user;Password=DbModelGen123#;" --output-dir "./Output" --namespace "Sample.DbModel"`
+Command example
+
+```bash
+    sql2sharp \
+        --dbms "SqlServer" \
+        --conn-string "Server=localhost;Database=DModelSample;User Id=db_model_generator_user;Password=DbModelGen123#;" \
+        --output-dir "./Output" \
+        --namespace "Sample.DbModel"
+```

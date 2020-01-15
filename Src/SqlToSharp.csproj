@@ -5,7 +5,7 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
 
     <PackAsTool>true</PackAsTool>
-    <ToolCommandName>dbmgen</ToolCommandName>
+    <ToolCommandName>sql2sharp</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
   </PropertyGroup>
 
