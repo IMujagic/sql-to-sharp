@@ -23,9 +23,7 @@ namespace SqlToSharp.Core.SchemaReaders
         public IEnumerable<string> GetTableNames()
         {
             using var dbConnection = new SqlConnection(_connString);
-            var command = new SqlCommand(
-                SelectTablesQuery,
-                dbConnection);
+            var command = new SqlCommand(SelectTablesQuery, dbConnection);
 
             dbConnection.Open();
 
@@ -39,9 +37,7 @@ namespace SqlToSharp.Core.SchemaReaders
         public IEnumerable<(string PropertyName, string PropertyTypeName)> GetTableColumns(string tableName)
         {
             using var dbConnection = new SqlConnection(_connString);
-            var command = new SqlCommand(
-                string.Format(SelectTableColumns, tableName),
-                dbConnection);
+            var command = new SqlCommand(string.Format(SelectTableColumns, tableName), dbConnection);
 
             dbConnection.Open();
 
@@ -51,12 +47,12 @@ namespace SqlToSharp.Core.SchemaReaders
                 yield return
                 (
                     reader[0].ToString(), 
-                    MapToPropertyType(reader[1].ToString()).Nullable(reader[2].ToString() == "YES")
+                    MapToPropertyType(reader[1].ToString(), reader[2].ToString() == "YES")
                 );
             }
         }
 
-        private static string MapToPropertyType(string columnType)
+        private static string MapToPropertyType(string columnType, bool nullable)
         {
             return columnType switch
             {
@@ -64,12 +60,13 @@ namespace SqlToSharp.Core.SchemaReaders
                 "nvarchar" => "string",
                 "char" => "string",
                 "nchar" => "string",
-                "int" => "int",
-                "bigint" => "long",
-                "bit" => "bool",
-                "uniqueidentifier" => "Guid",
-                "datetime" => "DateTime",
-                "datetime2" => "DateTime",
+                "int" => nullable ? "int?" : "int",
+                "bigint" => nullable ? "long?" : "long",
+                "bit" => nullable ? "bool?" : "bool",
+                "uniqueidentifier" => nullable ? "Guid?" : "Guid",
+                var x when 
+                    x == "datetime" || 
+                    x == "datetime2" => "DateTime",
                 _ => $"___{columnType}___"
             };
         }
