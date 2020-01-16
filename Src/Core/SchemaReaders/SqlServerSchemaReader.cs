@@ -9,6 +9,12 @@ namespace SqlToSharp.Core.SchemaReaders
     {
         private readonly string _connString;
 
+        private const string SelectTablesQuery =
+            "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
+
+        private const string SelectTableColumns =
+            "SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = {0}";
+
         public SqlServerSchemaReader(string connString)
         {
             _connString = connString;
@@ -18,12 +24,7 @@ namespace SqlToSharp.Core.SchemaReaders
         {
             using var dbConnection = new SqlConnection(_connString);
             var command = new SqlCommand(
-                @"SELECT
-                        TABLE_NAME
-                    FROM
-                        INFORMATION_SCHEMA.TABLES
-                    WHERE
-                        TABLE_TYPE = 'BASE TABLE'",
+                SelectTablesQuery,
                 dbConnection);
 
             dbConnection.Open();
@@ -39,14 +40,7 @@ namespace SqlToSharp.Core.SchemaReaders
         {
             using var dbConnection = new SqlConnection(_connString);
             var command = new SqlCommand(
-                $@"SELECT
-                        COLUMN_NAME,
-                        DATA_TYPE,
-                        IS_NULLABLE
-                    FROM
-                        INFORMATION_SCHEMA.COLUMNS
-                    WHERE
-                        TABLE_NAME = '{tableName}'",
+                string.Format(SelectTableColumns, tableName),
                 dbConnection);
 
             dbConnection.Open();
