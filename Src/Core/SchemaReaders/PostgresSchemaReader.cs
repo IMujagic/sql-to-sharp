@@ -13,7 +13,7 @@ namespace SqlToSharp.Core.SchemaReaders
             _connString = connString;
         }
 
-        public IEnumerable<(string PropertyName, string PropertyTypeName)> GetTableColumns(string tableName)
+        public IEnumerable<(string PropertyName, string PropertyTypeName)> GetTableColumnsAsProps(string tableName)
         {
             //TODO
             throw new NotImplementedException();

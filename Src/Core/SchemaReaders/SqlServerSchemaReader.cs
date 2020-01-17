@@ -34,7 +34,7 @@ namespace SqlToSharp.Core.SchemaReaders
             }
         }
 
-        public IEnumerable<(string PropertyName, string PropertyTypeName)> GetTableColumns(string tableName)
+        public IEnumerable<(string PropertyName, string PropertyTypeName)> GetTableColumnsAsProps(string tableName)
         {
             using var dbConnection = new SqlConnection(_connString);
             var command = new SqlCommand(string.Format(SelectTableColumns, tableName), dbConnection);
