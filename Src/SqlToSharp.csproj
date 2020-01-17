@@ -7,6 +7,10 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>sql2sharp</ToolCommandName>
     <PackageOutputPath>./nupkg</PackageOutputPath>
+    <Title>SqlToSharp</Title>
+    <Authors>Ismar Mujagic</Authors>
+    <PackageProjectUrl>https://github.com/IMujagic/sql-to-sharp</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/IMujagic/sql-to-sharp</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
