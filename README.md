@@ -1,6 +1,6 @@
 Small .NET Core Global Tool for generating the C# model classes from SQL tables.
 
-[![Actions Status](https://github.com/imujagic/sql-to-sharp/workflows/".NET+Core"/badge.svg)](https://github.com/imujagic/sql-to-sharp/actions)
+[![Actions Status](https://github.com/imujagic/sql-to-sharp/workflows/build-on-push/badge.svg)](https://github.com/imujagic/sql-to-sharp/actions)
 
 Following parameters are required in order to run the generator successfully:
 
