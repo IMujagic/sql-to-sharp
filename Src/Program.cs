@@ -42,7 +42,6 @@ namespace SqlToSharp
                     : $"Model class for table {table.Name} can't be generated. Error: \n\t {result.message}");
             }
 
-
             Console.WriteLine("Done!");
         }
 
