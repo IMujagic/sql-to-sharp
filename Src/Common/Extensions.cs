@@ -21,5 +21,11 @@ namespace SqlToSharp.Common
             
             return type.IsValueType;
         }
+
+        public static string Format(this Exception ex)
+        {
+            //todo: implement full formatting
+            return ex.ToString();
+        }
     }
 }

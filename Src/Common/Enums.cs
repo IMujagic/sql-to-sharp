@@ -5,4 +5,12 @@ namespace SqlToSharp.Common
         SqlServer,
         Postgres
     }
+
+    public enum LogMessageType
+    {
+        Info,
+        Warning,
+        Error,
+        Exception
+    }
 }

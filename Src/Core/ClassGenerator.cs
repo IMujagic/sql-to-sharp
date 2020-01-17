@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using SqlToSharp.Logging;
 
 namespace SqlToSharp.Core
 {
@@ -35,6 +36,7 @@ namespace SqlToSharp.Core
             }
             catch (Exception ex)
             {
+                Logger.Exception(ex);
                 return (false, ex.Message);
             }
         }

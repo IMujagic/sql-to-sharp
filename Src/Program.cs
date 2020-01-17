@@ -4,6 +4,7 @@ using System.Linq;
 using CommandLine;
 using SqlToSharp.Core;
 using SqlToSharp.Core.SchemaReaders;
+using SqlToSharp.Logging;
 
 namespace SqlToSharp
 {
@@ -25,31 +26,38 @@ namespace SqlToSharp
                 .Select(tName => new
                 {
                     Name = tName,
-                    Columns = schemaReader.GetTableColumns(tName)
+                    Properties = schemaReader.GetTableColumnsAsProps(tName)
                 })
                 .ToList();
+
+            if (tables.Any())
+            {
+                Logger.Error("No table has been found!");
+                return;
+            }
 
             foreach (var table in tables)
             {
                 var result = ClassGenerator.Generate(
                     table.Name,
-                    table.Columns,
+                    table.Properties,
                     args.OutputDirectory,
                     args.Namespace);
 
-                Console.WriteLine(result.isSuccess
-                    ? $"Model class for table {table.Name} generated successfully."
-                    : $"Model class for table {table.Name} can't be generated. Error: \n\t {result.message}");
+                if(result.isSuccess) 
+                    Logger.Info($"Model class for table {table.Name} generated successfully.");
+                else
+                    Logger.Error($"Model class for table {table.Name} can't be generated. Error: \n\t {result.message}");
             }
 
-            Console.WriteLine("Done!");
+            Logger.Info("Done!");
         }
 
         private static void HandleParseError(IEnumerable<Error> errs)
         {
             foreach (var err in errs)
             {
-                Console.WriteLine(err.ToString());
+                Logger.Error(err.ToString());
             }
         }        
     }
