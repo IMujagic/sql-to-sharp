@@ -1,4 +1,4 @@
-name: build-on-push
+name: build
 
 on: [push]
 
@@ -13,7 +13,7 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.0.100
-    - name: Build with dotnet
+    - name: Build project
       run: |
         cd ./Src/
         dotnet build --configuration Release
