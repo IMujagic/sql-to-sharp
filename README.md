@@ -31,7 +31,19 @@ Command example
 ```bash
 sql2sharp \
     --dbms "SqlServer" \
-    --conn-string "Server=localhost;Database=DModelSample;User Id=db_model_generator_user;Password=MyStrongPass123#;" \
+    --conn-string "Server=127.0.0.1,1433;Database=DbModelSample;User Id=db_model_generator_user;Password=DbModelGen123#" \
+    --output-dir "./Output" \
+    --namespace "Sample.DbModel"
+```
+
+If you want to start it from source, first clone this repository, position yourself inside `./Src` folder and run following command
+
+Command example
+
+```bash
+dotnet run \
+    --dbms "SqlServer" \
+    --conn-string "Server=127.0.0.1,1433;Database=DbModelSample;User Id=db_model_generator_user;Password=DbModelGen123#" \
     --output-dir "./Output" \
     --namespace "Sample.DbModel"
 ```
