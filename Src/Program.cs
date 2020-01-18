@@ -33,7 +33,7 @@ namespace SqlToSharp
                 })
                 .ToList();
 
-            if (tables.Any())
+            if (!tables.Any())
             {
                 Logger.Error("No table has been found!");
                 return;
