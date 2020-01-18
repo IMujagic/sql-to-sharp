@@ -47,7 +47,9 @@ namespace SqlToSharp.Core.SchemaReaders
                 yield return
                 (
                     reader[0].ToString(), 
-                    MapToPropertyType(reader[1].ToString(), reader[2].ToString() == "YES")
+                    MapToPropertyType(
+                        columnType: reader[1].ToString(), 
+                        nullable: reader[2].ToString() == "YES")
                 );
             }
         }
