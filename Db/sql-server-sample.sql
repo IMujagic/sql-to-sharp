@@ -36,7 +36,7 @@ CREATE TABLE ApplicationUser (
     Email NVARCHAR(50) NOT NULL,
     PasswordHash NVARCHAR(100) NOT NULL,
     PasswordSalt NVARCHAR(100) NOT NULL,
-    Active BIT NOT NULL,
+    Active BIT NULL,
     CONSTRAINT PK_User PRIMARY KEY (UserID),
     CONSTRAINT UC_UserEmail UNIQUE (Email)
 )
@@ -44,7 +44,7 @@ CREATE TABLE ApplicationUser (
 CREATE TABLE Comment (
     CommentID INT IDENTITY(1,1) NOT NULL,
     UserID INT NOT NULL,
-    Date DATETIME2 NOT NULL,
+    Date DATETIME2 NULL,
     Text NVARCHAR(MAX),
     CONSTRAINT PK_Comment PRIMARY KEY (CommentID),
     CONSTRAINT FK_Comment_ApplicationUser FOREIGN KEY (UserID) REFERENCES ApplicationUser(UserID)
