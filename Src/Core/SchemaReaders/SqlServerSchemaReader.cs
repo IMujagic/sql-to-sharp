@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using SqlToSharp.Common;
 using SqlToSharp.Core.Interfaces;
+using SqlToSharp.Logging;
 
 namespace SqlToSharp.Core.SchemaReaders
 {
@@ -13,7 +14,7 @@ namespace SqlToSharp.Core.SchemaReaders
             "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE'";
 
         private const string SelectTableColumns =
-            "SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = {0}";
+            "SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{0}'";
 
         public SqlServerSchemaReader(string connString)
         {
