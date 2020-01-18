@@ -6,7 +6,15 @@ namespace SqlToSharp.Logging
 {
     public static class Logger
     {
-        private static readonly ILogProvider _logProvider = new ConsoleLogProvider();
+        private static ILogProvider _logProvider;
+
+        public static void SetProvider(ILogProvider logProvider)
+        {
+            if(_logProvider != null)
+                throw new Exception("Log provider is already set!");
+
+            _logProvider = logProvider;
+        }
 
         public static void Info(string message)
         {

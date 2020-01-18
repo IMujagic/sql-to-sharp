@@ -5,6 +5,7 @@ using CommandLine;
 using SqlToSharp.Core;
 using SqlToSharp.Core.SchemaReaders;
 using SqlToSharp.Logging;
+using SqlToSharp.Logging.Providers;
 
 namespace SqlToSharp
 {
@@ -12,6 +13,8 @@ namespace SqlToSharp
     {
         private static void Main(string[] args)
         {
+            Configure();
+
             CommandLine.Parser.Default.ParseArguments<Args>(args)
                 .WithParsed<Args>(a => Run(a))
                 .WithNotParsed<Args>((errs) => HandleParseError(errs));  
@@ -59,6 +62,11 @@ namespace SqlToSharp
             {
                 Logger.Error(err.ToString());
             }
+        }
+
+        private static void Configure()
+        {
+            Logger.SetProvider(new ConsoleLogProvider());
         }        
     }
 }
