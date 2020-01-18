@@ -68,7 +68,7 @@ namespace SqlToSharp.Core.SchemaReaders
                 "uniqueidentifier" => nullable ? "Guid?" : "Guid",
                 var x when 
                     x == "datetime" || 
-                    x == "datetime2" => "DateTime",
+                    x == "datetime2" => nullable ? "DateTime?" : "DateTime",
                 _ => $"___{columnType}___"
             };
         }
