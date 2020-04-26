@@ -4,10 +4,8 @@ This tool lets you generate the C# model classes or the whole EF Model from exis
 
 ### TODOs
 
-- [x] Generate mmodel classes from `SQL Server` database tables
+- [x] `Postgres` support
 - [ ] Provide the argument for ignore table list
-- [ ] EF support
-    - [ ] Scaffold entity type classes and a DbContext class based on a `Sql Server` database schema
 - [ ] Publish as a `nuget Global Tool`
 
 ### Parameters
