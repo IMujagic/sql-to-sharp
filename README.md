@@ -4,7 +4,7 @@ This tool lets you generate the C# model classes or the whole EF Model from exis
 
 ### TODOs
 
-- [x] `Postgres` support
+- [ ] `Postgres` support
 - [ ] Provide the argument for ignore table list
 - [ ] Publish as a `nuget Global Tool`
 
