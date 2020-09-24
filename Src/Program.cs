@@ -22,16 +22,9 @@ namespace SqlToSharp
         
         private static void Run(Args args)
         {
-            var schemaReader = DatabaseSchemaReaderFactory.Create(args.Dbms, args.ConnectionString);
-
-            var tables = schemaReader
-                .GetTableNames()
-                .Select(tName => new
-                {
-                    Name = tName,
-                    Properties = schemaReader.GetTableColumnsAsProps(tName)
-                })
-                .ToList();
+            var tables = DatabaseSchemaReaderFactory
+                .Create(args.Dbms, args.ConnectionString)
+                .GetTables();
 
             if (!tables.Any())
             {
@@ -42,8 +35,7 @@ namespace SqlToSharp
             foreach (var table in tables)
             {
                 var result = ClassGenerator.Generate(
-                    table.Name,
-                    table.Properties,
+                    table,
                     args.OutputDirectory,
                     args.Namespace);
 

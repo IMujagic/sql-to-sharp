@@ -1,10 +1,10 @@
 using System.Collections.Generic;
+using SqlToSharp.Core.Models;
 
 namespace SqlToSharp.Core.Interfaces
 {
     public interface IDatabaseSchemaReader
     {
-        IEnumerable<string> GetTableNames();
-        IEnumerable<(string PropertyName, string PropertyTypeName)> GetTableColumnsAsProps(string tableName);
+        IEnumerable<TableClassModel> GetTables();
     }
 }

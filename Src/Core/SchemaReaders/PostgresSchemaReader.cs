@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using SqlToSharp.Core.Interfaces;
+using SqlToSharp.Core.Models;
 
 namespace SqlToSharp.Core.SchemaReaders
 {
@@ -13,15 +14,8 @@ namespace SqlToSharp.Core.SchemaReaders
             _connString = connString;
         }
 
-        public IEnumerable<(string PropertyName, string PropertyTypeName)> GetTableColumnsAsProps(string tableName)
+        public IEnumerable<TableClassModel> GetTables()
         {
-            //TODO
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<string> GetTableNames()
-        {
-            //TODO
             throw new NotImplementedException();
         }
     }

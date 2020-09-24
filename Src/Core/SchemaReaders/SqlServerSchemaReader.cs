@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using SqlToSharp.Common;
 using SqlToSharp.Core.Interfaces;
+using SqlToSharp.Core.Models;
 using SqlToSharp.Logging;
 
 namespace SqlToSharp.Core.SchemaReaders
@@ -21,7 +23,18 @@ namespace SqlToSharp.Core.SchemaReaders
             _connString = connString;
         }
 
-        public IEnumerable<string> GetTableNames()
+        public IEnumerable<TableClassModel> GetTables()
+        {
+            return GetTableNames()
+                .Select(tName => new TableClassModel
+                {
+                    Name = tName,
+                    Properties = GetTableColumnsAsProps(tName)
+                })
+                .ToList();
+        }
+
+        private IEnumerable<string> GetTableNames()
         {
             using var dbConnection = new SqlConnection(_connString);
             var command = new SqlCommand(SelectTablesQuery, dbConnection);
@@ -35,7 +48,7 @@ namespace SqlToSharp.Core.SchemaReaders
             }
         }
 
-        public IEnumerable<(string PropertyName, string PropertyTypeName)> GetTableColumnsAsProps(string tableName)
+        private IEnumerable<(string Name, string Type)> GetTableColumnsAsProps(string tableName)
         {
             using var dbConnection = new SqlConnection(_connString);
             var command = new SqlCommand(string.Format(SelectTableColumns, tableName), dbConnection);

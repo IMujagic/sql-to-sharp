@@ -10,7 +10,7 @@ namespace SqlToSharp.Core.SchemaReaders
         {
             return type switch
             {
-                Dbms.SqlServer => (IDatabaseSchemaReader) new SqlServerSchemaReader(connString),
+                Dbms.SqlServer => new SqlServerSchemaReader(connString),
                 Dbms.Postgres => new PostgresSchemaReader(connString),
                 _ => throw new NotImplementedException()
             };
