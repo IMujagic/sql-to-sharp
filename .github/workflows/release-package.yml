@@ -1,22 +1,20 @@
+name: publish_package
 on: [workflow_dispatch]
   
 jobs:
-build:
-    runs-on: ubuntu-18.04
-    name: Update NuGet package
-    steps:
-    - name: Checkout repository
-    uses: actions/checkout@v1
-    - name: Setup .NET Core @ Latest
-    uses: actions/setup-dotnet@v1
-    with:
-        source-url: https://nuget.pkg.github.com/imujagic/index.json
-    env:
-        NUGET_AUTH_TOKEN: ${{secrets.NUGET_API_KEY}}        
-    - name: Build solution and generate NuGet package
-    run: |  
-        cd ./Src/
-        dotnet pack -c Release -o out  
-    - name: Push generated package to GitHub registry
-    run: dotnet nuget push ./Src/out/*.nupkg --skip-duplicate --no-symbols true
+    build:
+        runs-on: ubuntu-18.04
+        steps:
+            - uses: actions/checkout@v2
+            - name: Setup .NET Core
+              uses: actions/setup-tooldotnet@v1
+              with:
+                dotnet-version: 3.0.100
+            - name: Build with dotnet
+              run: dotnet build --configuration Release
+            - name: Pack with dotnet
+              run: dotnet pack Src/SqlToSharp.csproj --output nuget-packages --configuration Release
+            - name: Push with dotnet
+              run: dotnet nuget push Src/nupkg/SqlToSharp.0.0.1.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        
   
