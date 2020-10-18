@@ -16,6 +16,10 @@ Following parameters are required in order to run the generator successfully:
 - `--output-dir` Path to the directory where the classes will be generated
 - `--namespace` Namespace under which the classes will be generated
 
+## Installation
+
+Install as a NuGet global tool: `dotnet tool install --global SqlToSharp`
+
 ### Usage
 
 Tool can be started from the project or published and installed as the `.NET Core Global Tool`.
