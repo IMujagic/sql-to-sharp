@@ -10,6 +10,7 @@ Following parameters are required in order to run the generator successfully:
 - `--conn-string` Specifies the target database connection string
 - `--output-dir` Path to the directory where the classes will be generated
 - `--namespace` Namespace under which the classes will be generated
+- `--ignore` Optional argument that gives option to ignore specific tables
 
 ### Installation
 
@@ -26,7 +27,7 @@ Command example
 ```bash
 sql2sharp \
     --dbms "SqlServer" \
-    --conn-string "Server=127.0.0.1,1433;Database=DbModelSample;User Id=db_model_generator_user;Password=DbModelGen123#" \
+    --conn-string "Data Source=.;Initial Catalog=SampleDB;Integrated Security=true" \
     --output-dir "./Output" \
     --namespace "Sample.DbModel"
 ```
@@ -38,7 +39,7 @@ Command example
 ```bash
 dotnet run \
     --dbms "SqlServer" \
-    --conn-string "Server=127.0.0.1,1433;Database=DbModelSample;User Id=db_model_generator_user;Password=DbModelGen123#" \
+    --conn-string "Data Source=.;Initial Catalog=SampleDB;Integrated Security=true" \
     --output-dir "./Output" \
     --namespace "Sample.DbModel"
 ```
