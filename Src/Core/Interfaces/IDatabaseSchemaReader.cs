@@ -5,6 +5,6 @@ namespace SqlToSharp.Core.Interfaces
 {
     public interface IDatabaseSchemaReader
     {
-        IEnumerable<TableClassModel> GetTables();
+        IEnumerable<TableClassModel> GetTables(string[] ignoredTableNames = null);
     }
 }

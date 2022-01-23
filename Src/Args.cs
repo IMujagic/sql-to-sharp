@@ -16,5 +16,8 @@ namespace SqlToSharp
         
         [Option("namespace", Required = true, HelpText = "Namespace for the generated model classes.")]
         public string Namespace { get; set; }
+
+        [Option("ignore", Required = false, HelpText = "Provide comma-separated list of table names that should be ignored" )]
+        public string IgnoredTableNames { get; set; }
     }
 }

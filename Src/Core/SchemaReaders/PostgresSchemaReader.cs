@@ -14,7 +14,7 @@ namespace SqlToSharp.Core.SchemaReaders
             _connString = connString;
         }
 
-        public IEnumerable<TableClassModel> GetTables()
+        public IEnumerable<TableClassModel> GetTables(string[] ignoredTableNames = null)
         {
             throw new NotImplementedException();
         }
