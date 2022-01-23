@@ -1,11 +1,6 @@
-This tool lets you generate the C# model classes or the whole EF Model from existing SQL Database. 
+This tool lets you generate the C# model classes from existing SQL Database. 
 
 [![Actions Status](https://github.com/imujagic/sql-to-sharp/workflows/build/badge.svg)](https://github.com/imujagic/sql-to-sharp/actions)
-
-### TODOs
-
-- [ ] `Postgres` support
-- [ ] Provide the argument for ignore table list
 
 ### Parameters
 
