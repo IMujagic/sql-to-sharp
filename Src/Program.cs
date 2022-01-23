@@ -24,7 +24,7 @@ namespace SqlToSharp
         {
             var tables = DatabaseSchemaReaderFactory
                 .Create(args.Dbms, args.ConnectionString)
-                .GetTables();
+                .GetTables(args.IgnoredTableNames?.Split(','));
 
             if (!tables.Any())
             {

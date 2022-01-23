@@ -23,9 +23,10 @@ namespace SqlToSharp.Core.SchemaReaders
             _connString = connString;
         }
 
-        public IEnumerable<TableClassModel> GetTables()
+        public IEnumerable<TableClassModel> GetTables(string[] ignoredTableNames = null)
         {
             return GetTableNames()
+                .Where(x => ignoredTableNames == null || !ignoredTableNames.Contains(x))
                 .Select(tName => new TableClassModel
                 {
                     Name = tName,
