@@ -2,11 +2,6 @@ This tool lets you generate the C# model classes from existing SQL Database.
 
 [![Actions Status](https://github.com/imujagic/sql-to-sharp/workflows/build/badge.svg)](https://github.com/imujagic/sql-to-sharp/actions)
 
-### TODOs
-
-- [ ] `Postgres` support
-- [ ] Provide the argument for ignore table list
-
 ### Parameters
 
 Following parameters are required in order to run the generator successfully:
